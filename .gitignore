@@ -1,0 +1,4 @@
+cat .gitignore
+
+/venv
+/.idea
