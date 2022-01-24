@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import data
 import random
@@ -124,10 +124,13 @@ def start_page():
     return render_template("main.html", s=list_user, s_1=list_order, s_2=list_offer)
 
 
-@app.route("/users/")
+@app.route("/users/", metod=["GET", "POST"])
 def users_page():
-    list_users = User.query.all()
-    return render_template("users.html", s=list_users)
+    if request.method == "GET":
+        list_users = User.query.all()
+        return render_template("users.html", s=list_users)
+    elif request.method == "POST":
+        request.form.get("append_user")
 
 
 @app.route("/user/<int:id_user>")
