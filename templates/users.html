@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Страница для отладки{% endblock %}
+{% block content %}
+<table class="blueTable">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>first_name</td>
+        <td>last_name</td>
+        <td>age</td>
+        <td>email</td>
+        <td>role</td>
+        <td>phone</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in s %}
+    <tr>
+        <td><a href="/user/{{ item.id }}">{{ item.id }}</a></td>
+        <td>{{ item.first_name }}</td>
+        <td>{{ item.last_name }}</td>
+        <td>{{ item.age }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ item.phone }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
+{% block footer %}
+{% endblock %}

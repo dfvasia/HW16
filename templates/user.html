@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Страница для отладки{% endblock %}
+{% block content %}
+<table class="blueTable">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>first_name</td>
+        <td>last_name</td>
+        <td>age</td>
+        <td>email</td>
+        <td>role</td>
+        <td>phone</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.first_name }}</td>
+        <td>{{ s.last_name }}</td>
+        <td>{{ s.age }}</td>
+        <td>{{ s.email }}</td>
+        <td>{{ s.role }}</td>
+        <td>{{ s.phone }}</td>
+    </tr>
+    </tbody>
+    </table>
+{% endblock %}
+{% block footer %}
+{% endblock %}

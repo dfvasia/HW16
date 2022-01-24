@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Страница для отладки{% endblock %}
+{% block content %}
+<table class="blueTable">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>description</td>
+        <td>start_date</td>
+        <td>end_date</td>
+        <td>price</td>
+        <td>customer_id</td>
+        <td>executor_id</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in s %}
+    <tr>
+        <td><a href="/order/{{ item.id }}">{{ item.id }}</a></td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.start_date }}</td>
+        <td>{{ item.end_date }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.customer_id }}</td>
+        <td>{{ item.executor_id }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
+{% block footer %}
+{% endblock %}

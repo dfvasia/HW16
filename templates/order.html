@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Страница для отладки{% endblock %}
+{% block content %}
+<table class="blueTable">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>description</td>
+        <td>start_date</td>
+        <td>end_date</td>
+        <td>price</td>
+        <td>customer_id</td>
+        <td>executor_id</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ s.id }}</td>
+        <td>{{ s.name }}</td>
+        <td>{{ s.description }}</td>
+        <td>{{ s.start_date }}</td>
+        <td>{{ s.end_date }}</td>
+        <td>{{ s.price }}</td>
+        <td>{{ s.customer_id }}</td>
+        <td>{{ s.executor_id }}</td>
+    </tr>
+    </tbody>
+    </table>
+{% endblock %}
+{% block footer %}
+{% endblock %}

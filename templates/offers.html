@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Страница для отладки{% endblock %}
+{% block content %}
+<table class="blueTable">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>order_id</td>
+        <td>executor_id</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in s %}
+    <tr>
+        <td><a href="/offer/{{ item.id }}">{{ item.id }}</a></td>
+        <td>{{ item.order_id }}</td>
+        <td>{{ item.executor_id }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
+{% block footer %}
+{% endblock %}

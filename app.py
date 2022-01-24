@@ -2,7 +2,6 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 import data
 import random
-import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
@@ -123,6 +122,42 @@ def start_page():
     list_order = [Order.query.get(random.randint(0, Order.query.count())) for _ in range(10)]
     list_offer = [Offer.query.get(random.randint(0, Offer.query.count())) for _ in range(10)]
     return render_template("main.html", s=list_user, s_1=list_order, s_2=list_offer)
+
+
+@app.route("/users/")
+def users_page():
+    list_users = User.query.all()
+    return render_template("users.html", s=list_users)
+
+
+@app.route("/user/<int:id_user>")
+def user_page(id_user: int):
+    list_user = User.query.get(id_user)
+    return render_template("user.html", s=list_user)
+
+
+@app.route("/orders/")
+def orders_page():
+    list_orders = Order.query.all()
+    return render_template("orders.html", s=list_orders)
+
+
+@app.route("/order/<int:id_order>")
+def order_page(id_order: int):
+    list_order = Order.query.get(id_order)
+    return render_template("order.html", s=list_order)
+
+
+@app.route("/offers/")
+def offers_page():
+    list_offers = Offer.query.all()
+    return render_template("offers.html", s=list_offers)
+
+
+@app.route("/offer/<int:id_offers>")
+def offer_page(id_offers: int):
+    list_offer = Offer.query.get(id_offers)
+    return render_template("offer.html", s=list_offer)
 
 
 if __name__ == '__main__':
