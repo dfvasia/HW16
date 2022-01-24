@@ -124,43 +124,159 @@ def start_page():
     return render_template("main.html", s=list_user, s_1=list_order, s_2=list_offer)
 
 
-@app.route("/users/", metod=["GET", "POST"])
+@app.route("/users", methods=['GET', 'POST'])
 def users_page():
     if request.method == "GET":
         list_users = User.query.all()
         return render_template("users.html", s=list_users)
     elif request.method == "POST":
-        request.form.get("append_user")
+        new_user = User(
+            first_name=request.form.get("append_user_first_name"),
+            last_name=request.form.get("append_user_last_name"),
+            age=int(request.form.get("append_user_age")),
+            email=request.form.get("append_user_email"),
+            role=request.form.get("append_user_role"),
+            phone=request.form.get("append_user_phone"),
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return f"готово"
 
 
-@app.route("/user/<int:id_user>")
+
+
+@app.route("/user/<int:id_user>", methods=['GET', 'POST', 'DELETE', 'PUT'])
 def user_page(id_user: int):
-    list_user = User.query.get(id_user)
-    return render_template("user.html", s=list_user)
+    if request.method == "GET":
+        list_user = User.query.get(id_user)
+        return render_template("user.html", s=list_user)
+
+    elif request.method == "POST":
+        if request.form['btn_identifier'] == 'id_identifier':
+            list_temp_1 = {
+                1: str(request.form.get("append_user_first_name")),
+                2: str(request.form.get("append_user_last_name")),
+                3: int(request.form.get("append_user_age")),
+                4: str(request.form.get("append_user_email")),
+                5: str(request.form.get("append_user_role")),
+                6: str(request.form.get("append_user_phone")),
+            }
+            u = User.query.get(id_user)
+            u.first_name = list_temp[1],
+            u.last_name = list_temp[2],
+            u.age = list_temp[3],
+            u.email = list_temp[4],
+            u.role = list_temp[5],
+            u.phone = list_temp[6],
+            db.session.add(u)
+            db.session.commit()
+
+        elif request.form['btn_identifier'] == 'idx_identifier':
+            del_user = User.query.get(id_user)
+            db.session.delete(del_user)
+            db.session.commit()
+        return "", 204
 
 
 @app.route("/orders/")
 def orders_page():
-    list_orders = Order.query.all()
-    return render_template("orders.html", s=list_orders)
+    if request.method == "GET":
+        list_orders = Order.query.all()
+        return render_template("orders.html", s=list_orders)
+
+    elif request.method == "POST":
+        new_order = Order(
+            first_name=request.form.get("append_user_first_name"),
+            last_name=request.form.get("append_user_last_name"),
+            age=int(request.form.get("append_user_age")),
+            email=request.form.get("append_user_email"),
+            role=request.form.get("append_user_role"),
+            phone=request.form.get("append_user_phone"),
+        )
+        db.session.add(new_order)
+        db.session.commit()
+        return f"готово"
 
 
 @app.route("/order/<int:id_order>")
 def order_page(id_order: int):
-    list_order = Order.query.get(id_order)
-    return render_template("order.html", s=list_order)
+    if request.method == "GET":
+        list_order = Order.query.get(id_order)
+        return render_template("order.html", s=list_order)
+
+    elif request.method == "POST":
+        if request.form['btn_identifier'] == 'id_identifier':
+            list_temp = {
+                1: str(request.form.get("append_user_first_name")),
+                2: str(request.form.get("append_user_last_name")),
+                3: int(request.form.get("append_user_age")),
+                4: str(request.form.get("append_user_email")),
+                5: str(request.form.get("append_user_role")),
+                6: str(request.form.get("append_user_role")),
+                7: str(request.form.get("append_user_phone")),
+            }
+            order = Order.query.get(id_order)
+            order.first_name = list_temp[1],
+            order.last_name = list_temp[2],
+            order.age = list_temp[3],
+            order.email = list_temp[4],
+            order.role = list_temp[5],
+            order.phone = list_temp[6],
+            order.phone = list_temp[7],
+            db.session.add(u)
+            db.session.commit()
+
+        elif request.form['btn_identifier'] == 'idx_identifier':
+            del_user = Order.query.get(id_order)
+            db.session.delete(del_user)
+            db.session.commit()
+        return "", 204
 
 
 @app.route("/offers/")
 def offers_page():
-    list_offers = Offer.query.all()
-    return render_template("offers.html", s=list_offers)
+    if request.method == "GET":
+        list_offers = Offer.query.all()
+        return render_template("offers.html", s=list_offers)
+
+    elif request.method == "POST":
+        new_offer = Offer(
+            first_name=request.form.get("append_user_first_name"),
+            last_name=request.form.get("append_user_last_name"),
+            age=int(request.form.get("append_user_age")),
+            email=request.form.get("append_user_email"),
+            role=request.form.get("append_user_role"),
+            phone=request.form.get("append_user_phone"),
+        )
+        db.session.add(new_offer)
+        db.session.commit()
+        return f"готово"
 
 
 @app.route("/offer/<int:id_offers>")
 def offer_page(id_offers: int):
-    list_offer = Offer.query.get(id_offers)
-    return render_template("offer.html", s=list_offer)
+    if request.method == "GET":
+        list_offer = Offer.query.get(id_offers)
+        return render_template("offer.html", s=list_offer)
+
+    elif request.method == "POST":
+        if request.form['btn_identifier'] == 'id_identifier':
+            list_temp = {
+                1: str(request.form.get("append_user_last_name")),
+                2: int(request.form.get("append_user_age")),
+            }
+            of = Offer.query.get(id_offers)
+            of.first_name = list_temp[1],
+            of.last_name = list_temp[2],
+
+            db.session.add(of)
+            db.session.commit()
+
+        elif request.form['btn_identifier'] == 'idx_identifier':
+            del_user = Offer.query.get(id_offers)
+            db.session.delete(del_user)
+            db.session.commit()
+        return "", 204
 
 
 if __name__ == '__main__':

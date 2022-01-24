@@ -30,6 +30,12 @@
 {% endblock %}
 {% block footer %}
 <form method="POST">
-<button input type="submit" class="blueTable" name="append_user">Добавить пользователя</button>
+    <p><b>Имя:</b><br><input type="text" name="append_user_first_name">
+    <p><b>Фамилия:</b><br><input type="text" name="append_user_last_name">
+    <p><b>Возраст:</b><br><input type="text" name="append_user_age">
+    <p><b>Почта:</b><br><input type="email" name="append_user_email">
+    <p><b>Права:</b><br><input type="text" name="append_user_role">
+    <p><b>Телефон:</b><br><input type="text" name="append_user_phone">
+<button input type="submit" class="blueTable">Добавить пользователя</button>
 </form>
 {% endblock %}

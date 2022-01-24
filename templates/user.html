@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Страница для отладки{% endblock %}
 {% block content %}
-<table class="blueTable">
-    <thead>
-    <tr>
+<form method="POST">
+    <table class="blueTable">
+        <thead>
+        <tr>
         <td>id</td>
         <td>first_name</td>
         <td>last_name</td>
@@ -11,20 +12,25 @@
         <td>email</td>
         <td>role</td>
         <td>phone</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
         <td>{{ s.id }}</td>
-        <td>{{ s.first_name }}</td>
-        <td>{{ s.last_name }}</td>
-        <td>{{ s.age }}</td>
-        <td>{{ s.email }}</td>
-        <td>{{ s.role }}</td>
-        <td>{{ s.phone }}</td>
+        <td><input type="text" name="append_user_first_name" value="{{ s.first_name }}"/></td>
+        <td><input type="text" name="append_user_last_name" value="{{ s.last_name }}"/></td>
+        <td><input type="text" name="append_user_age" value="{{ s.age }}"/></td>
+        <td><input type="text" name="append_user_email" value="{{ s.email }}"/></td>
+        <td><input type="text" name="append_user_role" value="{{ s.role }}"/></td>
+        <td><input type="text" name="append_user_phone" value="{{ s.phone }}/"></td>
+        <button input type="submit" class="blueTable" name="btn_identifier" value="id_identifier">Изменить пользователя</button>
     </tr>
     </tbody>
     </table>
+    </form>
+    <form method="POST">
+    <button input type="submit" class="blueTable" name="btn_identifier" value="idx_identifier">удалить пользователя</button>
+    </form>
 {% endblock %}
 {% block footer %}
 {% endblock %}
