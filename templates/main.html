@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Страница для отладки{% endblock %}
+{% block content %}
+<table class="blueTable">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>first_name</td>
+        <td>last_name</td>
+        <td>age</td>
+        <td>email</td>
+        <td>role</td>
+        <td>phone</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in s %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.first_name }}</td>
+        <td>{{ item.last_name }}</td>
+        <td>{{ item.age }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.role }}</td>
+        <td>{{ item.phone }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+<p></p>
+<table class="blueTable">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>description</td>
+        <td>start_date</td>
+        <td>end_date</td>
+        <td>price</td>
+        <td>customer_id</td>
+        <td>executor_id</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in s_1 %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.start_date }}</td>
+        <td>{{ item.end_date }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.customer_id }}</td>
+        <td>{{ item.executor_id }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+<p></p>
+<table class="blueTable">
+    <thead>
+    <tr>
+        <td>id</td>
+        <td>order_id</td>
+        <td>executor_id</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in s_2 %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.order_id }}</td>
+        <td>{{ item.executor_id }}</td>
+     </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}
+{% block footer %}
+{% endblock %}

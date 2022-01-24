@@ -1,4 +1,5 @@
-Users = [{'id': 1, 'first_name': 'Hudson', 'last_name': 'Pauloh', 'age': 31, 'email': 'elliot16@mymail.com',
+users = [
+    {'id': 1, 'first_name': 'Hudson', 'last_name': 'Pauloh', 'age': 31, 'email': 'elliot16@mymail.com',
           'role': 'customer', 'phone': '6197021684'},
          {'id': 2, 'first_name': 'George', 'last_name': 'Matter', 'age': 41, 'email': 'lawton46@mymail.com',
           'role': 'executor', 'phone': '8314786677'},
@@ -58,7 +59,8 @@ Users = [{'id': 1, 'first_name': 'Hudson', 'last_name': 'Pauloh', 'age': 31, 'em
           'role': 'executor', 'phone': '6787970230'},
          {'id': 30, 'first_name': 'Graham', 'last_name': 'Joeyoh', 'age': 28, 'email': 'myron26@mymail.com',
           'role': 'executor', 'phone': '6962652739'}]
-Orders = [{'id': 0, 'name': 'Встретить тетю на вокзале',
+orders = [
+    {'id': 0, 'name': 'Встретить тетю на вокзале',
            'description': 'Встретить тетю на вокзале с табличкой. Отвезти ее в магазин, помочь погрузить покупки. '
                           'Привезти тетю домой, занести покупки и чемодан в квартиру',
            'start_date': '02/08/2013', 'end_date': '03/28/2057',
@@ -361,7 +363,8 @@ Orders = [{'id': 0, 'name': 'Встретить тетю на вокзале',
                                 'start_date': '09/02/2015', 'end_date': '11/24/2059',
                                 'address': '12637 Lisa Points\nWilliamsburgh, NM 29343', 'price': 8490,
                                 'customer_id': 24, 'executor_id': 0}]
-Offers = [{'id': 0, 'order_id': 36, 'executor_id': 10}, {'id': 1, 'order_id': 35, 'executor_id': 4},
+offers = [
+    {'id': 0, 'order_id': 36, 'executor_id': 10}, {'id': 1, 'order_id': 35, 'executor_id': 4},
           {'id': 2, 'order_id': 35, 'executor_id': 21}, {'id': 3, 'order_id': 47, 'executor_id': 28},
           {'id': 4, 'order_id': 18, 'executor_id': 25}, {'id': 5, 'order_id': 22, 'executor_id': 25},
           {'id': 6, 'order_id': 11, 'executor_id': 11}, {'id': 7, 'order_id': 10, 'executor_id': 20},
@@ -396,3 +399,4 @@ Offers = [{'id': 0, 'order_id': 36, 'executor_id': 10}, {'id': 1, 'order_id': 35
           {'id': 64, 'order_id': 48, 'executor_id': 8}, {'id': 65, 'order_id': 40, 'executor_id': 17},
           {'id': 66, 'order_id': 47, 'executor_id': 19}, {'id': 67, 'order_id': 13, 'executor_id': 11},
           {'id': 68, 'order_id': 46, 'executor_id': 27}, {'id': 69, 'order_id': 45, 'executor_id': 28}]
+
