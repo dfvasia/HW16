@@ -1,22 +1,29 @@
 {% extends "base.html" %}
 {% block title %}Страница для отладки{% endblock %}
 {% block content %}
-<table class="blueTable">
-    <thead>
-    <tr>
-        <td>id</td>
-        <td>order_id</td>
-        <td>executor_id</td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>{{ s.id }}</td>
-        <td>{{ s.order_id }}</td>
-        <td>{{ s.executor_id }}</td>
+<form method="POST">
+    <table class="blueTable">
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>order_id</td>
+            <td>executor_id</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{{ s.id }}</td>
+        <td><input type="text" name="order_id" value="{{ s.order_id }}"/></td>
+        <td><input type="text" name="executor_id" value="{{ s.executor_id }}"/></td>
+<button input type="submit" class="blueTable" name="btn_identifier" value="id_identifier">Изменить пользователя</button>
     </tr>
     </tbody>
     </table>
+        </form>
+    <form method="POST">
+    <button input type="submit" class="blueTable" name="btn_identifier" value="idx_identifier">удалить пользователя</button>
+    </form>
 {% endblock %}
 {% block footer %}
+
 {% endblock %}
