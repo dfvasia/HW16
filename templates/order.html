@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Страница для отладки{% endblock %}
 {% block content %}
+<form method="POST">
 <table class="blueTable">
     <thead>
     <tr>
@@ -17,16 +18,21 @@
     <tbody>
     <tr>
         <td>{{ s.id }}</td>
-        <td>{{ s.name }}</td>
-        <td>{{ s.description }}</td>
-        <td>{{ s.start_date }}</td>
-        <td>{{ s.end_date }}</td>
-        <td>{{ s.price }}</td>
-        <td>{{ s.customer_id }}</td>
-        <td>{{ s.executor_id }}</td>
+        <td><input type="text" name="name" value="{{ s.name }}"/></td>
+        <td><input type="text" name="description" value="{{ s.description }}"/></td>
+        <td><input type="text" name="start_date" value="{{ s.start_date }}"/></td>
+        <td><input type="text" name="end_date" value="{{ s.end_date }}"/></td>
+        <td><input type="text" name="price" value="{{ s.price }}"/></td>
+        <td><input type="text" name="customer_id" value="{{ s.customer_id }}"/></td>
+        <td><input type="text" name="executor_id" value="{{ s.executor_id }}"/></td>
+<button input type="submit" class="blueTable" name="btn_identifier" value="id_identifier">Изменить заказ</button>
     </tr>
     </tbody>
     </table>
+        </form>
+    <form method="POST">
+    <button input type="submit" class="blueTable" name="btn_identifier" value="idx_identifier">удалить заказ</button>
+    </form>
 {% endblock %}
 {% block footer %}
 {% endblock %}

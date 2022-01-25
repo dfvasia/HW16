@@ -31,4 +31,14 @@
     </table>
 {% endblock %}
 {% block footer %}
+<form method="POST">
+    <p><b>Имя:</b><br><input type="text" name="name">
+    <p><b>Описание:</b><br><input type="text" name="description">
+    <p><b>начало:</b><br><input type="text" name="start_date">
+    <p><b>конец:</b><br><input type="text" name="end_date">
+    <p><b>стоимость:</b><br><input type="text" name="price">
+    <p><b>Id заказчика:</b><br><input type="text" name="customer_id">
+    <p><b>Id исп:</b><br><input type="text" name="executor_id">
+<button input type="submit" class="blueTable">Добавить пользователя</button>
+</form>
 {% endblock %}

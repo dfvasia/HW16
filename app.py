@@ -186,11 +186,11 @@ def orders_page():
         new_order = Order(
             name=request.form.get("name"),
             description=request.form.get("description"),
-            start_date=int(request.form.get("start_date")),
+            start_date=request.form.get("start_date"),
             end_date=request.form.get("end_date"),
             price=request.form.get("price"),
-            customer_id=request.form.get("customer_id"),
-            executor_id=request.form.get("executor_id"),
+            customer_id=int(request.form.get("customer_id")),
+            executor_id=int(request.form.get("executor_id")),
         )
         db.session.add(new_order)
         db.session.commit()
@@ -208,11 +208,11 @@ def order_page(id_order: int):
             list_temp = {
                 1: str(request.form.get("name")),
                 2: str(request.form.get("description")),
-                3: int(request.form.get("start_date")),
+                3: str(request.form.get("start_date")),
                 4: str(request.form.get("end_date")),
                 5: str(request.form.get("price")),
-                6: str(request.form.get("customer_id")),
-                7: str(request.form.get("executor_id")),
+                6: int(request.form.get("customer_id")),
+                7: int(request.form.get("executor_id")),
             }
             order = Order.query.get(id_order)
             order.name = list_temp[1],
@@ -266,8 +266,8 @@ def offer_page(id_offers: int):
             db.session.add(of)
             db.session.commit()
         elif request.form['btn_identifier'] == 'idx_identifier':
-            del_user = Offer.query.get(id_offers)
-            db.session.delete(del_user)
+            del_offer = Offer.query.get(id_offers)
+            db.session.delete(del_offer)
             db.session.commit()
         return f"готово", 204
 
