@@ -2,11 +2,12 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 import data
 import random
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+cont_type = {'Content-Type':'application/json; charset=utf-8'}
 
 db = SQLAlchemy(app)
 
@@ -143,7 +144,28 @@ def users_page():
         return f"готово", 204
 
 
-@app.route("/user/<int:id_user>", methods=['GET', 'POST', 'DELETE', 'PUT'])
+@app.route("/users/json", methods=['GET', 'POST'])
+def users_page_json():
+    if request.method == "GET":
+        list_users = [u.to_dict() for u in User.query.all()]
+        return json.dumps(list_users), 200, cont_type
+    elif request.method == "POST":
+        user_data =request.json
+        print(user_data)
+        new_user = User(
+            first_name=user_data["first_name"],
+            last_name=user_data["last_name"],
+            age=int(user_data["age"]),
+            email=user_data["email"],
+            role=user_data["role"],
+            phone=user_data["phone"],
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return "", 201
+
+
+@app.route("/users/<int:id_user>", methods=['GET', 'POST', 'DELETE', 'PUT'])
 def user_page(id_user: int):
     if request.method == "GET":
         list_user = User.query.get(id_user)
@@ -176,6 +198,32 @@ def user_page(id_user: int):
         return f"готово", 204
 
 
+@app.route("/users/json/<int:id_user>", methods=['GET', 'DELETE', 'PUT'])
+def users_json_page_pr(id_user: int):
+    if request.method == "GET":
+        list_user = User.query.get(id_user).to_dict()
+        return json.dumps(list_user), 200, cont_type
+
+    elif request.method == "PUT":
+        d = request.json
+        u = User.query.get(id_user)
+        u.first_name = d["first_name"],
+        u.last_name = d["last_name"],
+        u.age = int(d["age"]),
+        u.email = d["email"],
+        u.role = d["role"],
+        u.phone = d["phone"]
+        db.session.add(u)
+        db.session.commit()
+        return "", 201
+
+    elif request.method == "DELETE":
+        del_user = User.query.get(id_user)
+        db.session.delete(del_user)
+        db.session.commit()
+        return "", 201
+
+
 @app.route("/orders/", methods=['GET', 'POST', 'DELETE', 'PUT'])
 def orders_page():
     if request.method == "GET":
@@ -197,7 +245,28 @@ def orders_page():
         return f"готово", 204
 
 
-@app.route("/order/<int:id_order>", methods=['GET', 'POST', 'DELETE', 'PUT'])
+@app.route("/orders/json", methods=['GET', 'POST'])
+def orders_page_json():
+    if request.method == "GET":
+        list_orders = [u.to_dict() for u in Order.query.all()]
+        return json.dumps(list_orders), 200, cont_type
+    elif request.method == "POST":
+        orders_data =request.json
+        new_order = Order(
+            name=orders_data["name"],
+            description=orders_data["description"],
+            start_date=orders_data["start_date"],
+            end_date=orders_data["end_date"],
+            price=int(orders_data["price"]),
+            customer_id=int(orders_data["customer_id"]),
+            executor_id=int(orders_data["executor_id"]),
+        )
+        db.session.add(new_order)
+        db.session.commit()
+        return "", 201
+
+
+@app.route("/orders/<int:id_order>", methods=['GET', 'POST', 'DELETE', 'PUT'])
 def order_page(id_order: int):
     if request.method == "GET":
         list_order = Order.query.get(id_order)
@@ -232,6 +301,33 @@ def order_page(id_order: int):
         return f"готово", 204
 
 
+@app.route("/orders/json/<int:id_order>", methods=['GET', 'DELETE', 'PUT'])
+def orders_page_pn(id_order: int):
+    if request.method == "GET":
+        list_order = Order.query.get(id_order).to_dict()
+        return json.dumps(list_order), 200, cont_type
+
+    elif request.method == "PUT":
+        d = request.json
+        order = Order.query.get(id_order)
+        order.name = d["name"],
+        order.description = d["description"],
+        order.start_date = d["start_date"],
+        order.end_date = d["end_date"],
+        order.price = int(d["price"]),
+        order.customer_id = int(d["customer_id"]),
+        order.executor_id = int(d["executor_id"])
+        db.session.add(order)
+        db.session.commit()
+        return "", 201
+
+    elif request.method == "DELETE":
+        del_order = Order.query.get(id_order)
+        db.session.delete(del_order)
+        db.session.commit()
+        return "", 201
+
+
 @app.route("/offers/", methods=['GET', 'POST', 'DELETE', 'PUT'])
 def offers_page():
     if request.method == "GET":
@@ -247,8 +343,23 @@ def offers_page():
         db.session.commit()
         return f"готово"
 
+@app.route("/offers/json", methods=['GET', 'POST'])
+def offers_page_json():
+    if request.method == "GET":
+        list_offers = [u.to_dict() for u in Offer.query.all()]
+        return json.dumps(list_offers), 200, cont_type
+    elif request.method == "POST":
+        offers_data =request.json
+        new_offers = Offer(
+            order_id=offers_data["order_id"],
+            executor_id=offers_data["executor_id"],
+        )
+        db.session.add(new_offers)
+        db.session.commit()
+        return "", 201
 
-@app.route("/offer/<int:id_offers>", methods=['GET', 'POST', 'DELETE', 'PUT'])
+
+@app.route("/offers<int:id_offers>", methods=['GET', 'POST', 'DELETE', 'PUT'])
 def offer_page(id_offers: int):
     if request.method == "GET":
         list_offer = Offer.query.get(id_offers)
@@ -270,6 +381,29 @@ def offer_page(id_offers: int):
             db.session.delete(del_offer)
             db.session.commit()
         return f"готово", 204
+
+
+@app.route("/offers/json/<int:id_offers>>", methods=['GET', 'DELETE', 'PUT'])
+def orders_page_pn(id_offers: int):
+    if request.method == "GET":
+        list_offers = Order.query.get(id_offers).to_dict()
+        return json.dumps(list_offers), 200, cont_type
+
+    elif request.method == "PUT":
+        d = request.json
+        offers = Order.query.get(id_offers)
+        offers.order_id = int(d["order_id"]),
+        offers.executor_id = int(d["executor_id"]),
+
+        db.session.add(offers)
+        db.session.commit()
+        return "", 201
+
+    elif request.method == "DELETE":
+        del_offers = Order.query.get(id_offers)
+        db.session.delete(del_offers)
+        db.session.commit()
+        return "", 201
 
 
 if __name__ == '__main__':
