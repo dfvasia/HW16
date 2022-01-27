@@ -16,7 +16,7 @@
     <tbody>
     {% for item in s %}
     <tr>
-        <td><a href="/user/{{ item.id }}">{{ item.id }}</a></td>
+        <td><a href="/users/{{ item.id }}">{{ item.id }}</a></td>
         <td>{{ item.first_name }}</td>
         <td>{{ item.last_name }}</td>
         <td>{{ item.age }}</td>
@@ -44,7 +44,7 @@
     <tbody>
     {% for item in s_1 %}
     <tr>
-        <td><a href="/order/{{ item.id }}">{{ item.id }}</a></td>
+        <td><a href="/orders/{{ item.id }}">{{ item.id }}</a></td>
         <td>{{ item.name }}</td>
         <td>{{ item.description }}</td>
         <td>{{ item.start_date }}</td>
@@ -68,7 +68,7 @@
     <tbody>
     {% for item in s_2 %}
     <tr>
-        <td><a href="/offer/{{ item.id }}">{{ item.id }}</a></td>
+        <td><a href="/offers/{{ item.id }}">{{ item.id }}</a></td>
         <td>{{ item.order_id }}</td>
         <td>{{ item.executor_id }}</td>
      </tr>

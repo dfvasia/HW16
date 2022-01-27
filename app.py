@@ -182,12 +182,12 @@ def user_page(id_user: int):
                 6: str(request.form.get("append_user_phone")),
             }
             u = User.query.get(id_user)
-            u.first_name = list_temp_1[1],
-            u.last_name = list_temp_1[2],
-            u.age = list_temp_1[3],
-            u.email = list_temp_1[4],
-            u.role = list_temp_1[5],
-            u.phone = list_temp_1[6],
+            u.first_name = list_temp_1[1]
+            u.last_name = list_temp_1[2]
+            u.age = list_temp_1[3]
+            u.email = list_temp_1[4]
+            u.role = list_temp_1[5]
+            u.phone = list_temp_1[6]
             db.session.add(u)
             db.session.commit()
 
@@ -207,11 +207,11 @@ def users_json_page_pr(id_user: int):
     elif request.method == "PUT":
         d = request.json
         u = User.query.get(id_user)
-        u.first_name = d["first_name"],
-        u.last_name = d["last_name"],
-        u.age = int(d["age"]),
-        u.email = d["email"],
-        u.role = d["role"],
+        u.first_name = d["first_name"]
+        u.last_name = d["last_name"]
+        u.age = int(d["age"])
+        u.email = d["email"]
+        u.role = d["role"]
         u.phone = d["phone"]
         db.session.add(u)
         db.session.commit()
@@ -284,13 +284,13 @@ def order_page(id_order: int):
                 7: int(request.form.get("executor_id")),
             }
             order = Order.query.get(id_order)
-            order.name = list_temp[1],
-            order.description = list_temp[2],
-            order.start_date = list_temp[3],
-            order.end_date = list_temp[4],
-            order.price = list_temp[5],
-            order.customer_id = list_temp[6],
-            order.executor_id = list_temp[7],
+            order.name = list_temp[1]
+            order.description = list_temp[2]
+            order.start_date = list_temp[3]
+            order.end_date = list_temp[4]
+            order.price = list_temp[5]
+            order.customer_id = list_temp[6]
+            order.executor_id = list_temp[7]
             db.session.add(order)
             db.session.commit()
 
@@ -311,11 +311,11 @@ def orders_page_pn(id_order: int):
         d = request.json
         order = Order.query.get(id_order)
         order.name = d["name"],
-        order.description = d["description"],
-        order.start_date = d["start_date"],
-        order.end_date = d["end_date"],
-        order.price = int(d["price"]),
-        order.customer_id = int(d["customer_id"]),
+        order.description = d["description"]
+        order.start_date = d["start_date"]
+        order.end_date = d["end_date"]
+        order.price = int(d["price"])
+        order.customer_id = int(d["customer_id"])
         order.executor_id = int(d["executor_id"])
         db.session.add(order)
         db.session.commit()
@@ -359,7 +359,7 @@ def offers_page_json():
         return "", 201
 
 
-@app.route("/offers<int:id_offers>", methods=['GET', 'POST', 'DELETE', 'PUT'])
+@app.route("/offers/<int:id_offers>", methods=['GET', 'POST', 'DELETE', 'PUT'])
 def offer_page(id_offers: int):
     if request.method == "GET":
         list_offer = Offer.query.get(id_offers)
@@ -372,8 +372,8 @@ def offer_page(id_offers: int):
                 2: int(request.form.get("executor_id")),
             }
             of = Offer.query.get(id_offers)
-            of.order_id = list_temp[1],
-            of.executor_id = list_temp[2],
+            of.order_id = list_temp[1]
+            of.executor_id = list_temp[2]
             db.session.add(of)
             db.session.commit()
         elif request.form['btn_identifier'] == 'idx_identifier':
@@ -383,8 +383,8 @@ def offer_page(id_offers: int):
         return f"готово", 204
 
 
-@app.route("/offers/json/<int:id_offers>>", methods=['GET', 'DELETE', 'PUT'])
-def orders_page_pn(id_offers: int):
+@app.route("/offers/json/<int:id_offers>", methods=['GET', 'DELETE', 'PUT'])
+def offers_page_pn(id_offers):
     if request.method == "GET":
         list_offers = Order.query.get(id_offers).to_dict()
         return json.dumps(list_offers), 200, cont_type
@@ -392,8 +392,8 @@ def orders_page_pn(id_offers: int):
     elif request.method == "PUT":
         d = request.json
         offers = Order.query.get(id_offers)
-        offers.order_id = int(d["order_id"]),
-        offers.executor_id = int(d["executor_id"]),
+        offers.order_id = int(d["order_id"])
+        offers.executor_id = int(d["executor_id"])
 
         db.session.add(offers)
         db.session.commit()
